@@ -1,0 +1,1396 @@
+  [1m[35m (39.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "HopSkipDrive_test"[0m
+  [1m[35m (176.4ms)[0m  [1m[35mCREATE DATABASE "HopSkipDrive_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (40.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "drivers" CASCADE[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE TABLE "drivers" ("id" bigserial primary key, "home_address" character varying[], "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "rides" CASCADE[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "rides" ("id" bigserial primary key, "start_address" character varying[], "destination_address" character varying[], "status" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (42.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20221222114241)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20221222113448);
+
+[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (18.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2022-12-23 12:05:10.998176"], ["updated_at", "2022-12-23 12:05:10.998176"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "3e2ed454f9482bd4d6dbfcd73ea55c0f10a3ddcf"], ["created_at", "2022-12-23 12:05:11.022568"], ["updated_at", "2022-12-23 12:05:11.022568"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (29.8ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (1.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:09:38.994169"], ["updated_at", "2022-12-23 12:09:38.994169"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:09:39.039665"], ["updated_at", "2022-12-23 12:09:39.039665"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:10:13.321162"], ["updated_at", "2022-12-23 12:10:13.321162"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:10:13.332887"], ["updated_at", "2022-12-23 12:10:13.332887"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:10:50.563348"], ["updated_at", "2022-12-23 12:10:50.563348"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:10:50.574683"], ["updated_at", "2022-12-23 12:10:50.574683"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:11:22.187401"], ["updated_at", "2022-12-23 12:11:22.187401"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:11:22.199155"], ["updated_at", "2022-12-23 12:11:22.199155"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:12:23.300672"], ["updated_at", "2022-12-23 12:12:23.300672"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:12:23.312383"], ["updated_at", "2022-12-23 12:12:23.312383"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:12:58.683605"], ["updated_at", "2022-12-23 12:12:58.683605"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:12:58.695780"], ["updated_at", "2022-12-23 12:12:58.695780"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:13:12.112826"], ["updated_at", "2022-12-23 12:13:12.112826"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:13:12.124750"], ["updated_at", "2022-12-23 12:13:12.124750"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:13:54.197767"], ["updated_at", "2022-12-23 12:13:54.197767"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:13:54.209566"], ["updated_at", "2022-12-23 12:13:54.209566"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"8"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 860ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 12:14:12.069720"], ["updated_at", "2022-12-23 12:14:12.069720"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 12:14:12.081840"], ["updated_at", "2022-12-23 12:14:12.081840"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"9"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 641ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:05:44.496253"], ["updated_at", "2022-12-23 13:05:44.496253"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:05:44.507201"], ["updated_at", "2022-12-23 13:05:44.507201"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"10"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 904ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:05:45.483497"], ["updated_at", "2022-12-23 13:05:45.483497"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:05:45.485233"], ["updated_at", "2022-12-23 13:05:45.485233"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"11"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.9ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:07:18.276057"], ["updated_at", "2022-12-23 13:07:18.276057"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:07:18.292363"], ["updated_at", "2022-12-23 13:07:18.292363"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"12"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 612ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:07:18.977372"], ["updated_at", "2022-12-23 13:07:18.977372"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:07:18.978995"], ["updated_at", "2022-12-23 13:07:18.978995"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"13"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:07:24.161682"], ["updated_at", "2022-12-23 13:07:24.161682"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:07:24.173030"], ["updated_at", "2022-12-23 13:07:24.173030"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"14"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 638ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:07:24.883110"], ["updated_at", "2022-12-23 13:07:24.883110"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:07:24.884900"], ["updated_at", "2022-12-23 13:07:24.884900"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"15"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 560)
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:10:48.867723"], ["updated_at", "2022-12-23 13:10:48.867723"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:10:48.879901"], ["updated_at", "2022-12-23 13:10:48.879901"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"16"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 960ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:10:49.910493"], ["updated_at", "2022-12-23 13:10:49.910493"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:10:49.912297"], ["updated_at", "2022-12-23 13:10:49.912297"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"17"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mRide Load (0.5ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 560)
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:16:39.963638"], ["updated_at", "2022-12-23 13:16:39.963638"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:16:39.974827"], ["updated_at", "2022-12-23 13:16:39.974827"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"18"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 978ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:16:41.026923"], ["updated_at", "2022-12-23 13:16:41.026923"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:16:41.028712"], ["updated_at", "2022-12-23 13:16:41.028712"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"19"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 560)
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:26:17.954854"], ["updated_at", "2022-12-23 13:26:17.954854"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:26:17.966454"], ["updated_at", "2022-12-23 13:26:17.966454"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"20"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 825ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2570)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:26:18.883911"], ["updated_at", "2022-12-23 13:26:18.883911"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:26:18.885749"], ["updated_at", "2022-12-23 13:26:18.885749"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"21"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:00.126512"], ["updated_at", "2022-12-23 13:27:00.126512"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:00.138144"], ["updated_at", "2022-12-23 13:27:00.138144"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"22"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 623ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:00.837731"], ["updated_at", "2022-12-23 13:27:00.837731"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:00.839575"], ["updated_at", "2022-12-23 13:27:00.839575"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"23"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:33.063046"], ["updated_at", "2022-12-23 13:27:33.063046"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:33.075305"], ["updated_at", "2022-12-23 13:27:33.075305"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"24"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 627ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:33.777957"], ["updated_at", "2022-12-23 13:27:33.777957"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:33.779606"], ["updated_at", "2022-12-23 13:27:33.779606"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"25"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mRide Load (0.4ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.7ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:47.976962"], ["updated_at", "2022-12-23 13:27:47.976962"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:47.990747"], ["updated_at", "2022-12-23 13:27:47.990747"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"26"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 617ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:27:48.685034"], ["updated_at", "2022-12-23 13:27:48.685034"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:27:48.686811"], ["updated_at", "2022-12-23 13:27:48.686811"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"27"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:37:42.095823"], ["updated_at", "2022-12-23 13:37:42.095823"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:37:42.107521"], ["updated_at", "2022-12-23 13:37:42.107521"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"28"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 983ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:37:43.163251"], ["updated_at", "2022-12-23 13:37:43.163251"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:37:43.164963"], ["updated_at", "2022-12-23 13:37:43.164963"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"29"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:37:55.154424"], ["updated_at", "2022-12-23 13:37:55.154424"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:37:55.166135"], ["updated_at", "2022-12-23 13:37:55.166135"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"30"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 635ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:37:55.873217"], ["updated_at", "2022-12-23 13:37:55.873217"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:37:55.874877"], ["updated_at", "2022-12-23 13:37:55.874877"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"31"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:39:45.659457"], ["updated_at", "2022-12-23 13:39:45.659457"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:39:45.670545"], ["updated_at", "2022-12-23 13:39:45.670545"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"32"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 606ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:39:46.348010"], ["updated_at", "2022-12-23 13:39:46.348010"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:39:46.349980"], ["updated_at", "2022-12-23 13:39:46.349980"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"33"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:40:08.187849"], ["updated_at", "2022-12-23 13:40:08.187849"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:40:08.199567"], ["updated_at", "2022-12-23 13:40:08.199567"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"34"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 34], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 653ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:40:08.924972"], ["updated_at", "2022-12-23 13:40:08.924972"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:40:08.926766"], ["updated_at", "2022-12-23 13:40:08.926766"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"35"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:40:25.664839"], ["updated_at", "2022-12-23 13:40:25.664839"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:40:25.676760"], ["updated_at", "2022-12-23 13:40:25.676760"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"36"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 36], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 641ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2528)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:40:26.392803"], ["updated_at", "2022-12-23 13:40:26.392803"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:40:26.394718"], ["updated_at", "2022-12-23 13:40:26.394718"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"37"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[36mRide Load (0.4ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:51:07.703717"], ["updated_at", "2022-12-23 13:51:07.703717"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:51:07.715669"], ["updated_at", "2022-12-23 13:51:07.715669"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"38"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 38], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 1012ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2526)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:51:08.801682"], ["updated_at", "2022-12-23 13:51:08.801682"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:51:08.803308"], ["updated_at", "2022-12-23 13:51:08.803308"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"39"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:51:21.381129"], ["updated_at", "2022-12-23 13:51:21.381129"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:51:21.393188"], ["updated_at", "2022-12-23 13:51:21.393188"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"40"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 40], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 644ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 2529)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 13:51:22.130628"], ["updated_at", "2022-12-23 13:51:22.130628"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 13:51:22.132631"], ["updated_at", "2022-12-23 13:51:22.132631"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"41"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 41], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started GET "/api/v1/rides" for 127.0.0.1 at 2022-12-23 19:22:46 +0500
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 12ms (Views: 0.2ms | ActiveRecord: 4.2ms | Allocations: 1567)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (18.0ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:22:46.466563"], ["updated_at", "2022-12-23 14:22:46.466563"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:22:46.505453"], ["updated_at", "2022-12-23 14:22:46.505453"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"42"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 42], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 973ms (Views: 0.7ms | ActiveRecord: 0.6ms | Allocations: 2251)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:22:47.492068"], ["updated_at", "2022-12-23 14:22:47.492068"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:22:47.494195"], ["updated_at", "2022-12-23 14:22:47.494195"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"43"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 43], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.5ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:22:47.504489"], ["updated_at", "2022-12-23 14:22:47.504489"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:22:47.507465"], ["updated_at", "2022-12-23 14:22:47.507465"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"44"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 44], ["LIMIT", 1]]
+  [1m[36mRide Load (0.1ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 547)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+Started GET "/api/v1/rides" for 127.0.0.1 at 2022-12-23 19:23:50 +0500
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 10ms (Views: 0.2ms | ActiveRecord: 4.3ms | Allocations: 1567)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:23:50.558430"], ["updated_at", "2022-12-23 14:23:50.558430"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:23:50.576181"], ["updated_at", "2022-12-23 14:23:50.576181"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"45"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 623ms (Views: 1.1ms | ActiveRecord: 0.5ms | Allocations: 2249)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:23:51.209544"], ["updated_at", "2022-12-23 14:23:51.209544"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:23:51.211891"], ["updated_at", "2022-12-23 14:23:51.211891"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"46"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 560)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "open"], ["created_at", "2022-12-23 14:23:51.221606"], ["updated_at", "2022-12-23 14:23:51.221606"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 14:23:51.223979"], ["updated_at", "2022-12-23 14:23:51.223979"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"47"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 47], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "open"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 547)
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 176)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.7ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:49.309075"], ["updated_at", "2022-12-23 16:12:49.309075"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:12:49.322542"], ["updated_at", "2022-12-23 16:12:49.322542"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"48"}
+  [1m[36mDriver Load (41.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 48], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 838ms (Views: 0.4ms | ActiveRecord: 41.7ms | Allocations: 2537)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.223144"], ["updated_at", "2022-12-23 16:12:50.223144"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:12:50.225929"], ["updated_at", "2022-12-23 16:12:50.225929"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"49"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 49], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.234263"], ["updated_at", "2022-12-23 16:12:50.234263"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:12:50.236033"], ["updated_at", "2022-12-23 16:12:50.236033"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"50"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.240246"], ["updated_at", "2022-12-23 16:12:50.240246"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.241660"], ["updated_at", "2022-12-23 16:12:50.241660"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.243384"], ["updated_at", "2022-12-23 16:12:50.243384"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.244889"], ["updated_at", "2022-12-23 16:12:50.244889"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.246482"], ["updated_at", "2022-12-23 16:12:50.246482"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"50", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 50], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:12:50.266318"], ["updated_at", "2022-12-23 16:12:50.266318"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:12:50.267880"], ["updated_at", "2022-12-23 16:12:50.267880"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"51"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 51], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"6766"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 6766], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 182)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.7ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:29.802132"], ["updated_at", "2022-12-23 16:16:29.802132"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:16:29.814778"], ["updated_at", "2022-12-23 16:16:29.814778"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"52"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 785ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2539)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.664497"], ["updated_at", "2022-12-23 16:16:30.664497"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:16:30.666740"], ["updated_at", "2022-12-23 16:16:30.666740"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"53"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 53], ["LIMIT", 1]]
+  [1m[36mRide Load (0.4ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.676057"], ["updated_at", "2022-12-23 16:16:30.676057"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:16:30.678019"], ["updated_at", "2022-12-23 16:16:30.678019"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"54"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.682516"], ["updated_at", "2022-12-23 16:16:30.682516"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.684069"], ["updated_at", "2022-12-23 16:16:30.684069"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.685205"], ["updated_at", "2022-12-23 16:16:30.685205"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.686365"], ["updated_at", "2022-12-23 16:16:30.686365"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.687527"], ["updated_at", "2022-12-23 16:16:30.687527"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"54", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 54], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:16:30.726542"], ["updated_at", "2022-12-23 16:16:30.726542"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:16:30.728487"], ["updated_at", "2022-12-23 16:16:30.728487"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"55"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 55], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 185)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:36.775923"], ["updated_at", "2022-12-23 16:18:36.775923"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.4ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:18:36.788760"], ["updated_at", "2022-12-23 16:18:36.788760"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"56"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 56], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 615ms (Views: 0.4ms | ActiveRecord: 0.8ms | Allocations: 2539)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.455229"], ["updated_at", "2022-12-23 16:18:37.455229"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:18:37.457903"], ["updated_at", "2022-12-23 16:18:37.457903"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"57"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 57], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.464544"], ["updated_at", "2022-12-23 16:18:37.464544"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:18:37.465989"], ["updated_at", "2022-12-23 16:18:37.465989"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"58"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.469991"], ["updated_at", "2022-12-23 16:18:37.469991"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.471971"], ["updated_at", "2022-12-23 16:18:37.471971"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.473223"], ["updated_at", "2022-12-23 16:18:37.473223"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.474377"], ["updated_at", "2022-12-23 16:18:37.474377"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:18:37.475503"], ["updated_at", "2022-12-23 16:18:37.475503"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"58", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 58], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:16.172215"], ["updated_at", "2022-12-23 16:19:16.172215"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:16.174153"], ["updated_at", "2022-12-23 16:19:16.174153"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"59"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 59], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 185)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:23.751858"], ["updated_at", "2022-12-23 16:19:23.751858"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.5ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:23.764030"], ["updated_at", "2022-12-23 16:19:23.764030"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"60"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 60], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 634ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2539)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.454702"], ["updated_at", "2022-12-23 16:19:24.454702"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:24.456734"], ["updated_at", "2022-12-23 16:19:24.456734"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"61"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 61], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.464577"], ["updated_at", "2022-12-23 16:19:24.464577"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:24.466277"], ["updated_at", "2022-12-23 16:19:24.466277"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"62"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.470359"], ["updated_at", "2022-12-23 16:19:24.470359"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.471542"], ["updated_at", "2022-12-23 16:19:24.471542"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.472651"], ["updated_at", "2022-12-23 16:19:24.472651"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.473760"], ["updated_at", "2022-12-23 16:19:24.473760"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.475071"], ["updated_at", "2022-12-23 16:19:24.475071"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"62", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 62], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:24.483334"], ["updated_at", "2022-12-23 16:19:24.483334"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:24.484983"], ["updated_at", "2022-12-23 16:19:24.484983"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"63"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 63], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 186)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:46.863056"], ["updated_at", "2022-12-23 16:19:46.863056"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:46.873994"], ["updated_at", "2022-12-23 16:19:46.873994"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"64"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 64], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 1039ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 2537)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.965010"], ["updated_at", "2022-12-23 16:19:47.965010"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:47.967011"], ["updated_at", "2022-12-23 16:19:47.967011"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"65"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 65], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.974562"], ["updated_at", "2022-12-23 16:19:47.974562"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:47.976028"], ["updated_at", "2022-12-23 16:19:47.976028"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"66"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 66], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.980122"], ["updated_at", "2022-12-23 16:19:47.980122"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.981702"], ["updated_at", "2022-12-23 16:19:47.981702"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.983116"], ["updated_at", "2022-12-23 16:19:47.983116"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.984479"], ["updated_at", "2022-12-23 16:19:47.984479"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.985793"], ["updated_at", "2022-12-23 16:19:47.985793"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"66", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 66], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:19:47.991593"], ["updated_at", "2022-12-23 16:19:47.991593"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:19:47.993041"], ["updated_at", "2022-12-23 16:19:47.993041"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"67"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 67], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 186)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:35:36.622651"], ["updated_at", "2022-12-23 16:35:36.622651"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.6ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:36.643519"], ["updated_at", "2022-12-23 16:35:36.643519"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:35:36.645965"], ["updated_at", "2022-12-23 16:35:36.645965"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"69"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 69], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2438ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 2539)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.145074"], ["updated_at", "2022-12-23 16:35:39.145074"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:35:39.147398"], ["updated_at", "2022-12-23 16:35:39.147398"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"70"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 70], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.156234"], ["updated_at", "2022-12-23 16:35:39.156234"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:35:39.157992"], ["updated_at", "2022-12-23 16:35:39.157992"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"71"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.163329"], ["updated_at", "2022-12-23 16:35:39.163329"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.164727"], ["updated_at", "2022-12-23 16:35:39.164727"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.166162"], ["updated_at", "2022-12-23 16:35:39.166162"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.167645"], ["updated_at", "2022-12-23 16:35:39.167645"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.169438"], ["updated_at", "2022-12-23 16:35:39.169438"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"71", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 71], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:35:39.174718"], ["updated_at", "2022-12-23 16:35:39.174718"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:35:39.176461"], ["updated_at", "2022-12-23 16:35:39.176461"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"72"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 72], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 186)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:36:12.490655"], ["updated_at", "2022-12-23 16:36:12.490655"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/rides?driver=73&page=1&per_page=2" for 127.0.0.1 at 2022-12-23 21:36:12 +0500
+Processing by Api::V1::RidesController#index as JSON
+  Parameters: {"driver"=>"73", "page"=>"1", "per_page"=>"2"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 73], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 2653)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:12.564406"], ["updated_at", "2022-12-23 16:36:12.564406"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:36:12.566445"], ["updated_at", "2022-12-23 16:36:12.566445"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"74"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 74], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 643ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 2222)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.217868"], ["updated_at", "2022-12-23 16:36:13.217868"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.3ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:36:13.219735"], ["updated_at", "2022-12-23 16:36:13.219735"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"75"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 75], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.225759"], ["updated_at", "2022-12-23 16:36:13.225759"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:36:13.227357"], ["updated_at", "2022-12-23 16:36:13.227357"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"76"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 76], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.231436"], ["updated_at", "2022-12-23 16:36:13.231436"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.4ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.232870"], ["updated_at", "2022-12-23 16:36:13.232870"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.234506"], ["updated_at", "2022-12-23 16:36:13.234506"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.235888"], ["updated_at", "2022-12-23 16:36:13.235888"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.237160"], ["updated_at", "2022-12-23 16:36:13.237160"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"76", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 76], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:36:13.264728"], ["updated_at", "2022-12-23 16:36:13.264728"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:36:13.266389"], ["updated_at", "2022-12-23 16:36:13.266389"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"77"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 77], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.1ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 186)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.6ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:54:51.731142"], ["updated_at", "2022-12-23 16:54:51.731142"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/api/v1/rides?driver=78&page=1&per_page=2" for 127.0.0.1 at 2022-12-23 21:54:51 +0500
+Processing by Api::V1::RidesController#index as JSON
+  Parameters: {"driver"=>"78", "page"=>"1", "per_page"=>"2"}
+  [1m[36mDriver Load (0.3ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  [1m[36mRide Load (0.3ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 2653)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+Started GET "/api/v1/rides?driver=&page=1&per_page=2" for 127.0.0.1 at 2022-12-23 21:54:51 +0500
+Processing by Api::V1::RidesController#index as JSON
+  Parameters: {"driver"=>"", "page"=>"1", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 189)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.5ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:51.823784"], ["updated_at", "2022-12-23 16:54:51.823784"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:54:51.825762"], ["updated_at", "2022-12-23 16:54:51.825762"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"79"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 79], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 892ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 2219)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.725435"], ["updated_at", "2022-12-23 16:54:52.725435"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:54:52.727170"], ["updated_at", "2022-12-23 16:54:52.727170"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"80"}
+  [1m[36mDriver Load (0.4ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 80], ["LIMIT", 1]]
+  [1m[36mRide Load (0.4ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 562)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.735867"], ["updated_at", "2022-12-23 16:54:52.735867"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:54:52.737488"], ["updated_at", "2022-12-23 16:54:52.737488"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"81"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 81], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 558)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.741413"], ["updated_at", "2022-12-23 16:54:52.741413"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.742734"], ["updated_at", "2022-12-23 16:54:52.742734"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.744088"], ["updated_at", "2022-12-23 16:54:52.744088"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.767609"], ["updated_at", "2022-12-23 16:54:52.767609"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.2ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.769303"], ["updated_at", "2022-12-23 16:54:52.769303"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"81", "per_page"=>"2"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 81], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1157)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mRide Create (0.3ms)[0m  [1m[32mINSERT INTO "rides" ("start_address", "destination_address", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["start_address", "{-105.14799,39.851867}"], ["destination_address", "{-105.129289,39.842071}"], ["status", "0"], ["created_at", "2022-12-23 16:54:52.775793"], ["updated_at", "2022-12-23 16:54:52.775793"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mDriver Create (0.2ms)[0m  [1m[32mINSERT INTO "drivers" ("home_address", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["home_address", "{-105.14799,39.851867}"], ["created_at", "2022-12-23 16:54:52.779728"], ["updated_at", "2022-12-23 16:54:52.779728"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by Api::V1::RidesController#index as HTML
+  Parameters: {"driver"=>"82"}
+  [1m[36mDriver Load (0.2ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", 82], ["LIMIT", 1]]
+  [1m[36mRide Load (0.2ms)[0m  [1m[34mSELECT "rides".* FROM "rides" WHERE "rides"."status" = $1[0m  [["status", "0"]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 558)
+Processing by Api::V1::RidesController#index as HTML
+  [1m[36mDriver Load (0.1ms)[0m  [1m[34mSELECT "drivers".* FROM "drivers" WHERE "drivers"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 178)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK[0m
